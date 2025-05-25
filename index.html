@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="assets/Logo.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/Logo.svg" />
+
     <title>Circle-08-Spots</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="modals.css" />
@@ -17,16 +18,11 @@
     <!-- profile section -->
     <section class="profile-header" aria-label="Profile Section">
       <div class="avatar-section">
-        <img
-          class="avatar"
-          src="assets/img/Avatar.png"
-          alt="Profile avatar"
-          id="profileImg"
-        />
+        <img class="avatar" id="userAvatar" src="assets/img/Avatar.png" alt="Bessie Coleman" />
         <div class="avatar-description">
           <div class="avatar-children">
-            <h3 class="avatar-name" id="profileName">Bessie Coleman</h3>
-            <span class="avatar-field" id="profileJob">Civil Aviator</span>
+            <h3 class="avatar-name" id="userName">Bessie Coleman</h3>
+            <span class="avatar-field" id="userField">Civil Aviator</span>
           </div>
           <div class="edit-profile">
             <img
@@ -34,7 +30,7 @@
               src="assets/img/Group 2.png"
               alt="Edit icon"
             />
-            <button class="edit-btn" id="editProfileBtn">Edit Profile</button>
+            <button id="profileEditBtn" class="edit-btn">Edit Profile</button>
           </div>
         </div>
       </div>
@@ -44,6 +40,7 @@
       </button>
     </section>
 
+<<<<<<< HEAD
     <!-- Edit Profile Modal -->
     <div class="modal" id="modal-profile">
       <div class="modal-content">
@@ -72,6 +69,122 @@
     <!-- Cards will be added with JS -->
     <main class="site-content">
       <section class="gallery" id="gallery"></section>
+=======
+    <!-- The main section containing photo display -->
+    <main class="site-content">
+      <section class="gallery">
+        <!-- Row 1 -->
+        <div class="Image-container">
+          <figure>
+            <img
+              class="Images"
+              data-name="Val Thorens"
+              src="assets/img/Mask group.png"
+              alt="Val Thorens"
+            />
+            <figcaption class="Name-heart">
+              <p>Val Thorens</p>
+              <img
+                class="heart-icon"
+                src="assets/img/Union.png"
+                alt="Heart icon"
+              />
+            </figcaption>
+          </figure>
+        </div>
+        <div class="Image-container">
+          <figure>
+            <img
+              class="Images"
+              data-name="Restaurant terrace"
+              src="assets/img/pexels-kassandre-pedro-8639743 1.png"
+              alt="Restaurant terrace"
+            />
+            <figcaption class="Name-heart">
+              <p>Restaurant terrace</p>
+              <img
+                class="heart-icon"
+                src="assets/img/Union.png"
+                alt="Heart icon"
+              />
+            </figcaption>
+          </figure>
+        </div>
+        <div class="Image-container">
+          <figure>
+            <img
+              class="Images"
+              data-name="An outdoor cafe"
+              src="assets/img/Mask group (1).png"
+              alt="An outdoor cafe"
+            />
+            <figcaption class="Name-heart">
+              <p>An outdoor cafe</p>
+              <img
+                class="heart-icon"
+                src="assets/img/Union.png"
+                alt="Heart icon"
+              />
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="Image-container">
+          <figure>
+            <img
+              class="Images"
+              data-name="A long bridge over forest"
+              src="assets/img/pexels-kassandre-pedro-8639743 1-3.png"
+              alt="A long bridge over forest"
+            />
+            <figcaption class="desc">
+              <p>A very long bridge, over the forest…</p>
+              <img
+                class="heart-icon"
+                src="assets/img/Union.png"
+                alt="Heart icon"
+              />
+            </figcaption>
+          </figure>
+        </div>
+        <div class="Image-container">
+          <figure>
+            <img
+              class="Images"
+              data-name="Tunnel with morning light"
+              src="assets/img/pexels-kassandre-pedro-8639743 1-4.png"
+              alt="Tunnel with morning light"
+            />
+            <figcaption class="desc">
+              <p>Tunnel with morning light</p>
+              <img
+                class="heart-icon"
+                src="assets/img/Union.png"
+                alt="Heart icon"
+              />
+            </figcaption>
+          </figure>
+        </div>
+        <div class="Image-container">
+          <figure>
+            <img
+              class="Images"
+              data-name="Mountain house"
+              src="assets/img/pexels-kassandre-pedro-8639743 1-5.png"
+              alt="Mountain house"
+            />
+            <figcaption class="desc">
+              <p>Mountain house</p>
+              <img
+                class="heart-icon"
+                src="assets/img/Union.png"
+                alt="Heart icon"
+              />
+            </figcaption>
+          </figure>
+        </div>
+      </section>
     </main>
 
     <!-- Image Preview Modal -->
@@ -87,7 +200,6 @@
     <footer class="site-footer">
       <p class="footertext"></p>
     </footer>
-
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
