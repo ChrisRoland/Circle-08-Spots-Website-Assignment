@@ -1,0 +1,74 @@
+/* Media Queries */
+
+@media (max-width: 500px) {
+  .profile-header {
+    max-width: 90%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .avatar-children {
+    text-align: center;
+  }
+
+  .avatar-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .avatar-name {
+    font-size: 24px;
+    align-self: center;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .avatar-description {
+    margin-bottom: 1rem;
+    gap: 32px;
+  }
+
+  .edit-profile {
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  .button-large {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Modals */
+  .modal-close {
+    top: 0;
+    right: 0;
+  }
+
+  .editModal-content,
+  .modal-content {
+    width: 90%;
+  }
+
+  /* Gallery */
+  .site-content {
+    margin: 0 auto;
+    max-width: 90%;
+    padding: 20px 0;
+  }
+
+  .Image-container {
+    width: 96%;
+    margin-bottom: 20px;
+    padding-left: auto;
+    padding-right: auto;
+    align-items: center;
+  }
+
+  /* Footer */
+  .site-footer {
+    width: 90%;
+  }
+}
