@@ -7,7 +7,3 @@ function getCurrentYear() {
   const date = new Date();
   return date.getFullYear();
 }
-
-document.querySelector(
-  ".footertext"
-).textContent = `${getCurrentYear()} © Spots`;
