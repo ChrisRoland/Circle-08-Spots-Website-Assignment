@@ -38,4 +38,8 @@
 
 .button-large {
   animation-delay: 0.5s;
+  transition: all 0.3s ease-in-out;
+}
+.button-large:hover {
+  opacity: 80% !important;
 }

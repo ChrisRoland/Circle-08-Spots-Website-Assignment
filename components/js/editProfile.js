@@ -33,6 +33,8 @@ function createEditProfileModal() {
   profileNameInput.id = "profileNameInput";
   profileNameInput.name = "name";
   profileNameInput.required = true;
+  profileNameInput.minLength = 3;
+  profileNameInput.autofocus = true;
 
   // form Field (label and input)
   const profileFieldLabel = document.createElement("label");
@@ -81,7 +83,6 @@ function createEditProfileModal() {
   document.body.appendChild(editProfile);
 }
 
-
 window.addEventListener("DOMContentLoaded", function () {
   // Call the function to create and display the editProfile modal
   createEditProfileModal();
@@ -106,6 +107,7 @@ window.addEventListener("DOMContentLoaded", function () {
     editProfile.style.display = "flex";
     nameInput.value = userNameElem.textContent;
     fieldInput.value = fieldElem.textContent;
+    nameInput.focus();
   });
 
   // closing the editProfile modal

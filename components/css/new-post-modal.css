@@ -10,20 +10,26 @@
 }
 
 
-.modal-open {
+.modal.modal-open{
  display: flex;
 }
 
-
 .modal-content {
+    position: relative;
  background: #fcf5e5;
  padding: 2rem;
+ font-weight: bold;
  border-radius: 8px;
  max-width: 400px;
  width: 100%;
- position: relative;
 }
 
+.modal-content h2 {
+ text-align: center;
+ margin-bottom: 1.5rem;
+ font-size: 1.5rem;
+ color: #212121;
+}
 
 .modal-close {
  position: absolute;
@@ -32,7 +38,7 @@
  padding: 0 10px;
  background: transparent;
  border: none;
- font-size: 2.5rem;
+ font-size: 2rem;
  cursor: pointer;
  border-radius: 50%;
 }
@@ -47,7 +53,6 @@
  margin-bottom: 1rem;
 }
 
-
 .modal-content input {
  width: 100%;
  padding: 0.5rem;
@@ -55,19 +60,23 @@
  border: 1px solid #ccc;
  border-radius: 4px;
 }
-
-.preview-img {
- width: 100%;
- height: auto;
- max-height: 60vh;
- object-fit: contain;
-}
-.preview-title {
- text-align: center;
- margin-top: 0.5rem;
- font-size: 1.1rem;
+.modal-content form input:focus {
+    outline: 1px solid orange;
 }
 
 .upload-img {
  background-color: #fff;
+}
+
+.modal-content .button-large {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 10px 25px;
+ margin-top: 10px;
+ background-color: #212121;
+ color: #fcf5e5;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
 }

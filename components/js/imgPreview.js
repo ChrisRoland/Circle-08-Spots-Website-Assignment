@@ -1,19 +1,17 @@
-const STORAGE_KEY = "likedHearts";
+const STORAGE_KEY_UPLOADS = "spotsAppLS";
+const STORAGE_KEY_LIKES = "likedHearts";
 
-// Load liked state from localStorage
 function loadLikedHearts() {
-  const stored = localStorage.getItem(STORAGE_KEY);
+  const stored = localStorage.getItem(STORAGE_KEY_LIKES);
   return stored ? JSON.parse(stored) : [];
 }
-
-// Save liked state to localStorage
 function saveLikedHearts(list) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  localStorage.setItem(STORAGE_KEY_LIKES, JSON.stringify(list));
 }
-
 const likedHearts = loadLikedHearts();
 
-// Gallery data
+const uploaded = JSON.parse(localStorage.getItem(STORAGE_KEY_UPLOADS)) || [];
+
 const imageData = [
   { src: "./assets/img/Mask group.png", caption: "Val Thorens" },
   { src: "./assets/img/pexels-kassandre-pedro-8639743 1.png", caption: "Restaurant terrace" },
@@ -23,10 +21,10 @@ const imageData = [
   { src: "./assets/img/pexels-kassandre-pedro-8639743 1-5.png", caption: "Mountain house" }
 ];
 
-// Gallery container
+const allImages = [...uploaded, ...imageData];
 const gallerySection = document.getElementById("gallerySection");
 
-imageData.forEach((item) => {
+function createGalleryCard(item) {
   const container = document.createElement("div");
   container.className = "Image-container";
 
@@ -48,15 +46,12 @@ imageData.forEach((item) => {
   heartIcon.className = "heart-icon";
   heartIcon.alt = "Heart icon";
 
-  // Set initial heart state from localStorage
   const isLiked = likedHearts.includes(item.caption);
   heartIcon.src = isLiked ? "./assets/heart-solid.svg" : "./assets/img/Union.png";
   if (isLiked) heartIcon.classList.add("liked");
 
-  // Heart click event
   heartIcon.addEventListener("click", (e) => {
     e.stopPropagation();
-
     const index = likedHearts.indexOf(item.caption);
     if (index !== -1) {
       likedHearts.splice(index, 1);
@@ -67,11 +62,9 @@ imageData.forEach((item) => {
       heartIcon.src = "./assets/heart-solid.svg";
       heartIcon.classList.add("liked");
     }
-
     saveLikedHearts(likedHearts);
   });
 
-  // Image modal preview
   img.addEventListener("click", () => {
     const modal = document.getElementById("modal-preview");
     const previewImg = document.getElementById("previewImg");
@@ -87,15 +80,27 @@ imageData.forEach((item) => {
   figure.appendChild(img);
   figure.appendChild(figcaption);
   container.appendChild(figure);
-  gallerySection.appendChild(container);
+  return container;
+}
+
+// Initial render
+allImages.forEach((item) => {
+  const card = createGalleryCard(item);
+  gallerySection.appendChild(card);
 });
 
-// Inject image preview modal
+// Live update from new post
+window.addEventListener("post-added", (e) => {
+  const card = createGalleryCard(e.detail);
+  gallerySection.prepend(card);
+});
+
+// Image preview modal
 const modal = document.createElement("div");
 modal.className = "modal";
 modal.id = "modal-preview";
 modal.innerHTML = `
-  <div class="modal-content">
+  <div class="image-modal-content">
     <button class="modal-close" data-close>&times;</button>
     <img id="previewImg" src="" alt="" class="preview-img" />
     <p id="previewTitle" class="preview-title"></p>
@@ -103,9 +108,11 @@ modal.innerHTML = `
 `;
 document.body.appendChild(modal);
 
-// Modal close
 modal.addEventListener("click", (e) => {
   if (e.target.id === "modal-preview" || e.target.classList.contains("modal-close")) {
     modal.style.display = "none";
   }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") modal.style.display = "none";
 });
