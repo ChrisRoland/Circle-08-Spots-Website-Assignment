@@ -1,6 +1,9 @@
 @import 'components/css/edit-profile-modal.css';
 @import 'components/css/new-post-modal.css';
 @import 'components/css/image-prev-modal.css';
+@import 'components/css/animation.css';
+@import 'components/css/media-queries.css';
+
 
 * {
   margin: 0;
@@ -62,6 +65,7 @@ img {
 .avatar-children .avatar-name {
   font-size: 32px;
   color: #212121;
+  margin-bottom: 1rem;
 }
 
 .avatar-field {
@@ -70,6 +74,7 @@ img {
 }
 
 .edit-profile {
+  width: fit-content;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -78,6 +83,7 @@ img {
 
 .small-pencil {
   width: 18px;
+  cursor: url('https://cur.cursors-4u.net/cursors/cur-11/cur1046.cur'), auto;
 }
 
 .edit-btn {
@@ -144,6 +150,8 @@ figure {
 .Images {
   border-radius: 5px;
   object-fit: cover;
+  width: 22rem;
+  height: 22rem;
 }
 
 .Images:hover {
@@ -188,70 +196,4 @@ figure {
 .footertext {
   font-size: 10px;
   color: #666460;
-}
-
-/* Media Queries */
-
-@media (max-width: 500px) {
-  .profile-header {
-    max-width: 90%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .avatar-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .avatar-name {
-    font-size: 24px;
-    align-self: center;
-  }
-
-  .avatar-field {
-    font-size: 14px;
-    align-self: center;
-    padding-left: 90px;
-    margin-top: 0%;
-  }
-  .avatar {
-    width: 150px;
-    height: 150px;
-  }
-
-  .avatar-description {
-    margin-bottom: 1rem;
-    gap: 32px;
-  }
-
-  .edit-profile {
-    margin-top: 10px;
-    align-self: center;
-  }
-
-  .button-large {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Gallery */
-  .site-content {
-    margin: 0 auto;
-    max-width: 90%;
-    padding: 20px 0;
-  }
-
-  .Image-container {
-    width: 100%;
-    margin-bottom: 20px;
-    padding-left: auto;
-    padding-right: auto;
-    align-items: center;
-  }
-
-  /* Footer */
-  .site-footer {
-    width: 90%;
-  }
 }

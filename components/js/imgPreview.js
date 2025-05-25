@@ -1,4 +1,4 @@
-const images = document.querySelectorAll("img");
+const images = document.querySelectorAll(".Images");
 // adding an event on each of the images
 images.forEach((img) => {
   img.addEventListener("click", function () {

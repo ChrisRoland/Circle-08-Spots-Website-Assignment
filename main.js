@@ -1,4 +1,6 @@
-import '/components/js/imgPreview.js';
+import './components/js/imgPreview.js';
+import './components/js/animation.js';
+import "./components/js/editProfile.js";
 
 const imageData = [
   {
