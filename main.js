@@ -1,5 +1,5 @@
 import './components/js/imgPreview.js';
-import './components/js/animation.js';
+import './components/js/newPost.js';
 import "./components/js/editProfile.js";
 
 //function to get the current year for the copyright

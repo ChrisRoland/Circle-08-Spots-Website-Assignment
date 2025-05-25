@@ -17,7 +17,7 @@
 @keyframes slideIn {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
@@ -25,28 +25,17 @@
   }
 }
 
-.editModal-content {
+.editModal-content, .modal-content {
   opacity: 0;
   animation: fadeScaleIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-.profile-header {
+.profile-header,
+.button-large {
   opacity: 0;
   animation: slideIn 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* .avatar {
-    animation-delay: 0.2s;
-  }
-  .avatar-name {
-    animation-delay: 0.4s;
-  }
-  .avatar-field {
-    animation-delay: 0.8s;
-  }
-  .edit-profile{
-    animation-delay: 1s;
-  }
-  .button-large {
-    animation-delay: 1s;
-  } */
+.button-large {
+  animation-delay: 0.5s;
+}

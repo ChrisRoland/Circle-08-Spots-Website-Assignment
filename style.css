@@ -183,6 +183,14 @@ figure {
   opacity: 1;
   transition: all 0.3s ease-in-out;
 }
+.heart-icon.liked {
+  opacity: 1 !important;
+}
+.heart-icon.liked:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
 
 /*footer*/
 .site-footer {

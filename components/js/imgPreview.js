@@ -1,34 +1,31 @@
+const STORAGE_KEY = "likedHearts";
+
+// Load liked state from localStorage
+function loadLikedHearts() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored ? JSON.parse(stored) : [];
+}
+
+// Save liked state to localStorage
+function saveLikedHearts(list) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+
+const likedHearts = loadLikedHearts();
+
+// Gallery data
 const imageData = [
-  {
-    src: "./assets/img/Mask group.png",
-    caption: "Val Thorens"
-  },
-  {
-    src: "./assets/img/pexels-kassandre-pedro-8639743 1.png",
-    caption: "Restaurant terrace"
-  },
-  {
-    src: "./assets/img/Mask group (1).png",
-    caption: "An outdoor cafe"
-  },
-  {
-    src: "./assets/img/pexels-kassandre-pedro-8639743 1-3.png",
-    caption: "A very long bridge, over the forest …"
-  },
-  {
-    src: "./assets/img/pexels-kassandre-pedro-8639743 1-4.png",
-    caption: "Tunnel with morning light"
-  },
-  {
-    src: "./assets/img/pexels-kassandre-pedro-8639743 1-5.png",
-    caption: "Mountain house"
-  }
+  { src: "./assets/img/Mask group.png", caption: "Val Thorens" },
+  { src: "./assets/img/pexels-kassandre-pedro-8639743 1.png", caption: "Restaurant terrace" },
+  { src: "./assets/img/Mask group (1).png", caption: "An outdoor cafe" },
+  { src: "./assets/img/pexels-kassandre-pedro-8639743 1-3.png", caption: "A very long bridge, over the forest …" },
+  { src: "./assets/img/pexels-kassandre-pedro-8639743 1-4.png", caption: "Tunnel with morning light" },
+  { src: "./assets/img/pexels-kassandre-pedro-8639743 1-5.png", caption: "Mountain house" }
 ];
 
-// Target the gallery section
+// Gallery container
 const gallerySection = document.getElementById("gallerySection");
 
-// Inject the image cards
 imageData.forEach((item) => {
   const container = document.createElement("div");
   container.className = "Image-container";
@@ -49,18 +46,32 @@ imageData.forEach((item) => {
 
   const heartIcon = document.createElement("img");
   heartIcon.className = "heart-icon";
-  heartIcon.src = "./assets/img/Union.png";
   heartIcon.alt = "Heart icon";
 
-  // Like toggle
+  // Set initial heart state from localStorage
+  const isLiked = likedHearts.includes(item.caption);
+  heartIcon.src = isLiked ? "./assets/heart-solid.svg" : "./assets/img/Union.png";
+  if (isLiked) heartIcon.classList.add("liked");
+
+  // Heart click event
   heartIcon.addEventListener("click", (e) => {
     e.stopPropagation();
-    heartIcon.src = heartIcon.classList.toggle("liked")
-      ? "./assets/heart-solid.svg"
-      : "./assets/img/Union.png";
+
+    const index = likedHearts.indexOf(item.caption);
+    if (index !== -1) {
+      likedHearts.splice(index, 1);
+      heartIcon.src = "./assets/img/Union.png";
+      heartIcon.classList.remove("liked");
+    } else {
+      likedHearts.push(item.caption);
+      heartIcon.src = "./assets/heart-solid.svg";
+      heartIcon.classList.add("liked");
+    }
+
+    saveLikedHearts(likedHearts);
   });
 
-  // Image click → open modal
+  // Image modal preview
   img.addEventListener("click", () => {
     const modal = document.getElementById("modal-preview");
     const previewImg = document.getElementById("previewImg");
@@ -79,7 +90,7 @@ imageData.forEach((item) => {
   gallerySection.appendChild(container);
 });
 
-// Inject the modal at the end of body
+// Inject image preview modal
 const modal = document.createElement("div");
 modal.className = "modal";
 modal.id = "modal-preview";
@@ -92,7 +103,7 @@ modal.innerHTML = `
 `;
 document.body.appendChild(modal);
 
-// Close modal on click
+// Modal close
 modal.addEventListener("click", (e) => {
   if (e.target.id === "modal-preview" || e.target.classList.contains("modal-close")) {
     modal.style.display = "none";
