@@ -86,6 +86,10 @@ img {
   border: none;
   cursor: url('https://cur.cursors-4u.net/cursors/cur-11/cur1046.cur'), auto;
 }
+.edit-btn:hover {
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
 
 /* New Post Button */
 .button-large {
@@ -97,6 +101,10 @@ img {
   background-color: #212121;
   border-radius: 8px;
   cursor: pointer;
+}
+.button-large:hover {
+  background-color: #333;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-plus {
@@ -131,6 +139,8 @@ figure {
 .Images {
   border-radius: 5px;
   object-fit: cover;
+  width: 22rem;
+  height: 22rem;
 }
 
 .Images:hover {
@@ -157,6 +167,19 @@ figure {
   width: 20px;
   height: 20px;
   opacity: 40%;
+  cursor: pointer;
+}
+
+.heart-icon:hover {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.red-heart {
+  width: 20px;
+  height: 20px;
+  opacity: 1 !important;
+  cursor: pointer;
 }
 
 /*footer*/
@@ -217,6 +240,13 @@ figure {
     width: 100%;
     justify-content: center;
   }
+
+  /* Modals */
+  .modal-close {
+  top: 0; 
+  right: 0;
+
+}
 
   /* Gallery */
   .site-content {
