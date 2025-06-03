@@ -1,0 +1,45 @@
+/* Profile Section Animation */
+@keyframes fadeScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  50% {
+    opacity: 90%;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.editModal-content, .modal-content, .image-modal-content {
+  opacity: 0;
+  animation: fadeScaleIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.profile-header,
+.button-large {
+  opacity: 0;
+  animation: slideIn 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.button-large {
+  animation-delay: 0.5s;
+  transition: all 0.3s ease-in-out;
+}
+.button-large:hover {
+  opacity: 80% !important;
+}

@@ -1,0 +1,67 @@
+.editModal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editModal-content,
+.modal-content {
+  background-color: rgba(252, 245, 229, 1);
+  padding: 30px;
+  border: 1px solid #212121;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.closeEditModal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0 10px 4px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.closeEditModal:hover {
+  background-color: #00000029;
+  transition: all 0.3s ease-in-out;
+}
+
+.editModal-content form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.editModal-content form input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.editModal-content form input[type="text"]:focus {
+    outline: 1px solid orange;
+
+}
+
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #212121;
+  color: #fcf5e5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
