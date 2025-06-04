@@ -32,8 +32,25 @@
   }
 
   .edit-profile {
-    margin-top: 10px;
     align-self: center;
+    opacity: 1 !important;
+  }
+
+  .edit-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edit-btn-text {
+    display: none;
+  }
+
+  .small-pencil {
+    width: 40px !important;
+    padding: 5px;
+    border: 1px solid #818080;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.289);
   }
 
   .button-large {
@@ -50,6 +67,15 @@
   .editModal-content,
   .modal-content {
     width: 90%;
+  }
+
+  .image-modal-content {
+    background: #fcf5e5;
+    padding: 1.55rem;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
   }
 
   /* Gallery */

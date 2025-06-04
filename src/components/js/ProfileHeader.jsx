@@ -25,18 +25,18 @@ export default function ProfileHeader({
               {userField}
             </span>
           </div>
-          <div className="edit-profile">
-            <img
-              className="small-pencil"
-              src="./../../assets/img/Group 2.png"
-              alt="Edit icon"
-            />
+          <div className="edit-profile" title='Edit Profile'>
             <button
               id="profileEditBtn"
               className="edit-btn"
               onClick={onEditProfile}
             >
-              Edit Profile
+            <img
+              className="small-pencil"
+              src="./../../assets/img/Group 2.png"
+              alt="Edit icon"
+            />
+              <span className="edit-btn-text">Edit Profile</span>
             </button>
           </div>
         </div>
