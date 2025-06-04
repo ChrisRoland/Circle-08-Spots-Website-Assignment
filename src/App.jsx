@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState, useEffect } from "react";
 import LogoHeader from "./components/js/LogoHeader";
 import ProfileHeader from "./components/js/ProfileHeader";
@@ -53,20 +52,17 @@ function App() {
     setIsEditOpen(false);
   };
 
-  const [posts, setPosts] = useState([]);
-
-  // Load saved posts on mount
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("spotsAppLS") || "[]");
-    setPosts(saved);
-  }, []);
-
-  // Persist posts
+  const [posts, setPosts] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("spotsAppLS")) || [];
+    } catch {
+      return [];
+    }
+  });
   useEffect(() => {
     localStorage.setItem("spotsAppLS", JSON.stringify(posts));
   }, [posts]);
 
-  // New Post modal visibility
   const [isNewPostOpen, setIsNewPostOpen] = useState(false);
   const handleAddPost = (newPost) => {
     setPosts((prev) => [newPost, ...prev]);
@@ -76,7 +72,6 @@ function App() {
   return (
     <>
       <LogoHeader />
-
       <ProfileHeader
         userName={profile.name}
         userField={profile.field}
@@ -84,18 +79,14 @@ function App() {
         onEditProfile={() => setIsEditOpen(true)}
         onNewPost={() => setIsNewPostOpen(true)}
       />
-
       <Gallery posts={posts} />
-
       <Footer />
-
       <EditProfileModal
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         currentProfile={profile}
         onUpdateProfile={handleUpdateProfile}
       />
-
       <NewPostModal
         isOpen={isNewPostOpen}
         onClose={() => setIsNewPostOpen(false)}

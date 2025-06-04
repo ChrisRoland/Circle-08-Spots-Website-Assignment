@@ -6,38 +6,32 @@ import staticImageData from './../../images.json';
 const STORAGE_KEY_LIKES = 'likedHearts';
 
 export default function Gallery({ posts = [] }) {
-  const [allImages, setAllImages] = useState([]);
-  const [likedHearts, setLikedHearts] = useState([]);
-  const [previewItem, setPreviewItem] = useState(null);
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
-  //load likedHearts from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY_LIKES);
+  const [likedHearts, setLikedHearts] = useState(() => {
     try {
-      setLikedHearts(stored ? JSON.parse(stored) : []);
+      return JSON.parse(localStorage.getItem(STORAGE_KEY_LIKES)) || [];
     } catch {
-      setLikedHearts([]);
+      return [];
     }
-  }, []);
-
-  useEffect(() => {
-
-    setAllImages([...posts, ...staticImageData]);
-  }, [posts]);
-
+  });
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY_LIKES, JSON.stringify(likedHearts));
   }, [likedHearts]);
 
-  const toggleLike = caption => {
-    setLikedHearts(prev => {
-      if (prev.includes(caption)) {
-        return prev.filter(c => c !== caption);
-      } else {
-        return [...prev, caption];
-      }
-    });
+  const [allImages, setAllImages] = useState([]);
+  const [previewItem, setPreviewItem] = useState(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  useEffect(() => {
+    setAllImages([...posts, ...staticImageData]);
+  }, [posts]);
+
+  const toggleLike = (caption) => {
+    setLikedHearts((prev) =>
+      prev.includes(caption)
+        ? prev.filter((c) => c !== caption)
+        : [...prev, caption]
+    );
   };
 
   const openPreview = item => {
