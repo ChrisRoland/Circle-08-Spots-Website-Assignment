@@ -60,17 +60,30 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 400px;
 }
 
 .avatar-children .avatar-name {
   font-size: 32px;
   color: #212121;
   margin-bottom: 1rem;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .avatar-field {
   font-size: 16px;
   color: #212121b2;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .edit-profile {
@@ -87,6 +100,10 @@ img {
 }
 
 .edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   text-decoration: none;
   font-family: inherit;
   font-size: 16px;
@@ -116,6 +133,9 @@ img {
 .button-large:hover {
   opacity: 80%;
   transition: all 0.3s ease-in-out;
+}
+.button-large:disabled {
+  cursor:not-allowed;
 }
 
 .btn-plus {
@@ -150,8 +170,8 @@ figure {
 .Images {
   border-radius: 5px;
   object-fit: cover;
-  width: 22rem;
-  height: 22rem;
+  /* width: 22rem;
+  height: 22rem; */
 }
 
 .Images:hover {
@@ -204,4 +224,9 @@ figure {
 .footertext {
   font-size: 10px;
   color: #666460;
+}
+
+.error {
+  color: red;
+  font-size: 10px;
 }
