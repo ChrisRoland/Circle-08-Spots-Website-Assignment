@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 export default function EditProfileModal({
   isOpen,
@@ -6,45 +6,94 @@ export default function EditProfileModal({
   currentProfile,
   onUpdateProfile,
 }) {
-  const [name, setName] = useState('');
-  const [field, setField] = useState('');
-  const [avatarPreview, setAvatarPreview] = useState('');
+  const [name, setName] = useState("");
+  const [field, setField] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [fieldError, setFieldError] = useState("");
   const fileInputRef = useRef(null);
   const overlayRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
-      setName(currentProfile.name || '');
-      setField(currentProfile.field || '');
-      setAvatarPreview(currentProfile.avatar || '');
+      setName(currentProfile.name || "");
+      setField(currentProfile.field || "");
+      setAvatarPreview(currentProfile.avatar || "");
+      setNameError("");
+      setFieldError("");
     }
   }, [isOpen, currentProfile]);
 
-  const handleBackdropClick = e => {
+  const handleBackdropClick = (e) => {
     if (e.target === overlayRef.current) {
       onClose();
     }
   };
 
-  const handleFileChange = e => {
+  const handleFileChange = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = ev => {
+    reader.onload = (ev) => {
       setAvatarPreview(ev.target.result);
     };
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = e => {
+  // Validation:
+  const validateName = (value) => {
+    if (value.trim().length === 0) {
+      return "Name is required.*";
+    }
+    if (value.trim().length < 3) {
+      return "Name must be at least 3 characters.*";
+    }
+    return "";
+  };
+
+  const validateField = (value) => {
+    if (value.trim().length === 0) {
+      return "Field is required.*";
+    }
+    if (value.trim().length < 3) {
+      return "Field must be at least 3 characters.*";
+    }
+    return "";
+  };
+
+  // On each change, update value & error state:
+  const onNameChange = (e) => {
+    const newValue = e.target.value;
+    setName(newValue);
+    setNameError(validateName(newValue));
+  };
+
+  const onFieldChange = (e) => {
+    const newValue = e.target.value;
+    setField(newValue);
+    setFieldError(validateField(newValue));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Run last validation pass:
+    const finalNameError = validateName(name);
+    const finalFieldError = validateField(field);
+    setNameError(finalNameError);
+    setFieldError(finalFieldError);
+
+    if (finalNameError || finalFieldError) {
+      return;
+    }
+
     const updated = {
       name: name.trim(),
       field: field.trim(),
       avatar: avatarPreview,
     };
     // Save to localStorage
-    localStorage.setItem('profile', JSON.stringify(updated));
+    localStorage.setItem("profile", JSON.stringify(updated));
     onUpdateProfile(updated);
     onClose();
   };
@@ -55,7 +104,7 @@ export default function EditProfileModal({
     <div
       className="editModal"
       id="profileEditModal"
-      style={{ display: 'flex' }}
+      style={{ display: "flex" }}
       ref={overlayRef}
       onClick={handleBackdropClick}
     >
@@ -68,7 +117,7 @@ export default function EditProfileModal({
           &times;
         </span>
         <h2>Edit Profile</h2>
-        <form id="editProfileForm" onSubmit={handleSubmit}>
+        <form id="editProfileForm" onSubmit={handleSubmit} noValidate>
           <label htmlFor="profileNameInput">Name:</label>
           <input
             type="text"
@@ -78,18 +127,27 @@ export default function EditProfileModal({
             minLength={3}
             autoFocus
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={onNameChange}
+            onBlur={(e) => setNameError(validateName(e.target.value))}
           />
+          {nameError && (
+            <small className="error">{nameError}</small>
+          )}
 
           <label htmlFor="profileFieldInput">Field:</label>
-          <input
-            type="text"
+          <textarea
             id="profileFieldInput"
             name="field"
             required
+            minLength={3}
             value={field}
-            onChange={e => setField(e.target.value)}
+            onChange={onFieldChange}
+            onBlur={(e) => setFieldError(validateField(e.target.value))}
+            className="profile-textarea"
           />
+          {fieldError && (
+            <small className="error">{fieldError}</small>
+          )}
 
           <label htmlFor="profileAvatarInput">Upload Image:</label>
           <input
@@ -102,7 +160,7 @@ export default function EditProfileModal({
           />
 
           <br />
-          <button type="submit" className="save-btn">
+          <button type="submit" className="save-btn mt-4">
             Save
           </button>
         </form>

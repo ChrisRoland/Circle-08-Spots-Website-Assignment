@@ -38,7 +38,7 @@
 
 .editModal-content form label {
   display: block;
-  margin-top: 10px;
+  margin: 10px 0 5px;
   font-weight: bold;
 }
 
@@ -50,7 +50,30 @@
 }
 .editModal-content form input[type="text"]:focus {
     outline: 1px solid orange;
+}
 
+.editModal-content form textarea {
+  font-family: inherit;
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.editModal-content form textarea:focus {
+  outline: 1px solid orange;
+}
+
+
+.editModal-content form input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.editModal-content form input[type="file"]:focus {
+    outline: 1px solid orange;
 }
 
 .save-btn {

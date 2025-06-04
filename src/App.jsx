@@ -17,21 +17,33 @@ function App() {
 
   // Load default profile or saved profile from localStorage
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("profile") || "null");
-    if (stored) {
-      setProfile(stored);
-    } else {
-      setProfile({
-        name: "Bessie Coleman",
-        field: "Civil Aviator",
-        avatar: "/assets/img/Avatar.png",
-      });
+    const defaultProfile = {
+      name: "Bessie Coleman",
+      field: "Civil Aviator",
+      avatar: "/assets/img/Avatar.png",
+    };
+
+    try {
+      const stored = JSON.parse(localStorage.getItem("profile"));
+      if (stored && Object.keys(stored).length > 0) {
+        setProfile(stored);
+      } else {
+        // Use default profile if no stored profile exists
+        setProfile(defaultProfile);
+        localStorage.setItem("profile", JSON.stringify(defaultProfile));
+      }
+      // eslint-disable-next-line no-unused-vars
+    } catch (error) {
+      setProfile(defaultProfile);
+      localStorage.setItem("profile", JSON.stringify(defaultProfile));
     }
   }, []);
 
   // Persist profile whenever it changes
   useEffect(() => {
-    localStorage.setItem("profile", JSON.stringify(profile));
+    if (profile.name && profile.field && profile.avatar) {
+      localStorage.setItem("profile", JSON.stringify(profile));
+    }
   }, [profile]);
 
   // Edit Profile modal visibility
@@ -73,12 +85,10 @@ function App() {
         onNewPost={() => setIsNewPostOpen(true)}
       />
 
-      {/* Gallery receives the array of user-uploaded posts */}
       <Gallery posts={posts} />
 
       <Footer />
 
-      {/* Edit Profile Modal */}
       <EditProfileModal
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -86,7 +96,6 @@ function App() {
         onUpdateProfile={handleUpdateProfile}
       />
 
-      {/* New Post Modal */}
       <NewPostModal
         isOpen={isNewPostOpen}
         onClose={() => setIsNewPostOpen(false)}
@@ -97,5 +106,3 @@ function App() {
 }
 
 export default App;
-
-
