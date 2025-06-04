@@ -62,30 +62,30 @@ export default function EditProfileModal({
   };
 
   // On each change, update value & error state:
-  const onNameChange = (e) => {
-    const newValue = e.target.value;
-    setName(newValue);
-    setNameError(validateName(newValue));
-  };
+const onNameChange = (e) => {
+  const input = e.target;
+  setName(input.value);
+  // Use the built-in validation API
+  setNameError(input.validationMessage);
+};
 
-  const onFieldChange = (e) => {
-    const newValue = e.target.value;
-    setField(newValue);
-    setFieldError(validateField(newValue));
-  };
+
+const onFieldChange = (e) => {
+  const input = e.target;
+  setField(input.value);
+  // Use the built-in validation API
+  setFieldError(input.validationMessage);
+};
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  const form = e.target;
 
-    // Run last validation pass:
-    const finalNameError = validateName(name);
-    const finalFieldError = validateField(field);
-    setNameError(finalNameError);
-    setFieldError(finalFieldError);
-
-    if (finalNameError || finalFieldError) {
-      return;
-    }
+  if (!form.checkValidity()) {
+    // This triggers the browser's built-in validation UI
+    form.reportValidity();
+    return;
+  }
 
     const updated = {
       name: name.trim(),
@@ -117,7 +117,7 @@ export default function EditProfileModal({
           &times;
         </span>
         <h2>Edit Profile</h2>
-        <form id="editProfileForm" onSubmit={handleSubmit} noValidate>
+        <form id="editProfileForm" onSubmit={handleSubmit}>
           <label htmlFor="profileNameInput">Name:</label>
           <input
             type="text"

@@ -36,6 +36,11 @@
   transition: all 0.3s ease-in-out;
 }
 
+.editModal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .editModal-content form label {
   display: block;
   margin: 10px 0 5px;

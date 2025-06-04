@@ -61,9 +61,9 @@ export default function NewPost({ isOpen, onClose, onSave }) {
 
   // Handle title changes
   const onTitleChange = (e) => {
-    const newValue = e.target.value;
-    setTitle(newValue);
-    setTitleError(validateTitle(newValue));
+    const input = e.target;
+    setTitle(input.value);
+    setTitleError(input.validationMessage);
   };
 
   const onTitleBlur = () => {
@@ -97,14 +97,11 @@ export default function NewPost({ isOpen, onClose, onSave }) {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
 
-    // Final validation pass
-    const finalTitleError = validateTitle(title);
-    const finalFileError = validateFile(fileInputRef.current?.files);
-    setTitleError(finalTitleError);
-    setFileError(finalFileError);
-
-    if (finalTitleError || finalFileError) {
+    if (!form.checkValidity()) {
+      // This will show the browser's built-in validation messages
+      form.reportValidity();
       return;
     }
 
@@ -135,7 +132,7 @@ export default function NewPost({ isOpen, onClose, onSave }) {
           &times;
         </button>
         <h2>New Post</h2>
-        <form id="form-post" onSubmit={handleSubmit} noValidate>
+        <form id="form-post" onSubmit={handleSubmit}>
           {/* Image Input */}
           <label htmlFor="postFile">Upload Image:</label>
           <input
