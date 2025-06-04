@@ -60,17 +60,30 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 400px;
 }
 
 .avatar-children .avatar-name {
   font-size: 32px;
   color: #212121;
   margin-bottom: 1rem;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .avatar-field {
   font-size: 16px;
   color: #212121b2;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .edit-profile {
