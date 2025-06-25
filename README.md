@@ -32,6 +32,8 @@ A simple React photo gallery built with Vite, where users can create a profile, 
 
 ## Project Overview
 
+![](./public/assets/ss.png)
+
 Spots Gallery is a lightweight React application scaffolded with Vite. It demonstrates how to:
 
 - Manage multiple pieces of state (profile, posts, likes).  
